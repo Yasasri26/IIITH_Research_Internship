@@ -1,0 +1,16 @@
+Segmentation Performance Metrics
+
+Preprocess Time: 10.1 ms
+Inference Time: 1286.3 ms
+Postprocess Time: 75.5 ms
+
+Detected Objects:
+
+* Persons
+* Cars
+* Bus
+* Trucks
+* Traffic lights
+
+Model Used:
+yolov8n-seg.pt
