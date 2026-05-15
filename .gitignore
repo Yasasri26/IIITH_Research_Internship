@@ -1,0 +1,6 @@
+yolo_env/
+runs/
+**pycache**/
+*.pt
+week1/task1/frames/
+week1/task2/frames_30fps/
