@@ -1,0 +1,232 @@
+# Week 4 Task 1 - YOLO Dataset Structure and Metadata Files
+
+## Introduction
+
+YOLO (You Only Look Once) is a real-time object detection framework widely used in computer vision applications such as autonomous driving, surveillance systems, drone detection, traffic monitoring, and medical imaging. YOLO models require properly organized datasets and metadata files for training and validation.
+
+This report explains the structure of a YOLO dataset, the purpose of YAML configuration files, the role of label files, and how these files are used during model training.
+
+---
+
+# YOLO Dataset Structure
+
+A standard YOLO dataset contains images and corresponding label files organized into training, validation, and testing folders.
+
+Example structure:
+
+```
+dataset/
+├── images/
+│   ├── train/
+│   ├── val/
+│   └── test/
+│
+├── labels/
+│   ├── train/
+│   ├── val/
+│   └── test/
+│
+└── data.yaml
+```
+
+---
+
+# Explanation of Dataset Folders
+
+## 1. images/train/
+
+This folder contains images used for training the YOLO model. During training, the model learns object features from these images.
+
+Example:
+
+```
+images/train/car1.jpg
+images/train/bus1.jpg
+```
+
+---
+
+## 2. images/val/
+
+This folder contains validation images used to evaluate model performance during training.
+
+The validation dataset helps identify:
+
+* overfitting
+* underfitting
+* training accuracy
+
+---
+
+## 3. images/test/
+
+This folder contains testing images used after training to evaluate the final model on unseen data.
+
+---
+
+## 4. labels/train/
+
+This folder contains annotation text files corresponding to training images.
+
+Each image has one matching text file.
+
+Example:
+
+```
+car1.jpg
+car1.txt
+```
+
+---
+
+## 5. labels/val/
+
+Contains label files corresponding to validation images.
+
+---
+
+## 6. labels/test/
+
+Contains label files corresponding to testing images.
+
+---
+
+# YOLO Label File Format
+
+YOLO label files store object information in normalized format.
+
+Example label:
+
+```
+0 0.512 0.433 0.201 0.178
+```
+
+Meaning of values:
+
+| Value | Description            |
+| ----- | ---------------------- |
+| 0     | Class ID               |
+| 0.512 | Center X coordinate    |
+| 0.433 | Center Y coordinate    |
+| 0.201 | Width of bounding box  |
+| 0.178 | Height of bounding box |
+
+Coordinates are normalized between 0 and 1.
+
+---
+
+# Class IDs
+
+Each object category is assigned a numeric ID.
+
+Example:
+
+| Class ID | Object |
+| -------- | ------ |
+| 0        | Car    |
+| 1        | Bus    |
+| 2        | Person |
+
+---
+
+# YAML Configuration File
+
+The YAML file is the most important metadata file in a YOLO dataset.
+
+Example:
+
+```yaml
+path: dataset
+
+train: images/train
+val: images/val
+
+test: images/test
+
+names:
+  0: car
+  1: bus
+  2: person
+```
+
+---
+
+# Explanation of YAML Fields
+
+| Field | Description            |
+| ----- | ---------------------- |
+| path  | Root dataset directory |
+| train | Training images path   |
+| val   | Validation images path |
+| test  | Testing images path    |
+| names | List of class names    |
+
+---
+
+# Importance of Metadata Files
+
+Metadata files are essential because they:
+
+* define dataset structure
+* specify image locations
+* define class names
+* connect images with labels
+* help YOLO load training data correctly
+
+Without proper metadata configuration, model training will fail.
+
+---
+
+# Role of Annotation Tools
+
+Annotation tools such as Label Studio, LabelImg, and Roboflow are used to create YOLO label files.
+
+These tools help users:
+
+* draw bounding boxes
+* assign class labels
+* export YOLO formatted annotations
+
+Good quality labeling improves model accuracy significantly.
+
+---
+
+# Applications of YOLO Datasets
+
+YOLO datasets are used in many real-world applications:
+
+* Autonomous vehicles
+* Traffic monitoring
+* Drone detection
+* Medical image analysis
+* Smart surveillance
+* Industrial automation
+
+---
+
+# Observations
+
+During this task, the structure and working of YOLO datasets were analyzed. It was observed that:
+
+* YOLO requires properly organized datasets
+* Labels are stored in normalized coordinate format
+* YAML files control dataset configuration
+* Accurate labeling improves detection quality
+
+---
+
+# Conclusion
+
+YOLO dataset organization and metadata files are fundamental for object detection model training. The dataset structure, label files, and YAML configuration collectively help the YOLO framework identify images, annotations, and object classes correctly.
+
+Understanding these files is essential before training custom object detection models.
+
+---
+
+# References
+
+1. [https://docs.ultralytics.com/](https://docs.ultralytics.com/)
+2. [https://docs.ultralytics.com/datasets/detect/](https://docs.ultralytics.com/datasets/detect/)
+3. [https://labelstud.io/](https://labelstud.io/)
+4. [https://github.com/ultralytics/ultralytics](https://github.com/ultralytics/ultralytics)
+5. [https://www.ultralytics.com/)
